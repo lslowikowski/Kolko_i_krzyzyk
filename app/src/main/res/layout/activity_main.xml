@@ -87,5 +87,9 @@
             android:backgroundTint="#AAAAAA"
             android:onClick="przycisk"/>
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/wynik"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tu pojawi się wynik" />
 </LinearLayout>
