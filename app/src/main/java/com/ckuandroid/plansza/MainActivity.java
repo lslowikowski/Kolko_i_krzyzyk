@@ -10,42 +10,63 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     String znak ="X";
     int licznik = 0;
+    Button p11;
+    Button p12;
+    Button p13;
+    Button p21;
+    Button p22;
+    Button p23;
+    Button p31;
+    Button p32;
+    Button p33;
+    Button reset;
+    TextView wynik;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        p11 = (Button) findViewById(R.id.pole_1_1);
+        p12 = (Button) findViewById(R.id.pole_1_2);
+        p13 = (Button) findViewById(R.id.pole_1_3);
+
+        p21 = (Button) findViewById(R.id.pole_2_1);
+        p22 = (Button) findViewById(R.id.pole_2_2);
+        p23 = (Button) findViewById(R.id.pole_2_3);
+
+        p31 = (Button) findViewById(R.id.pole_3_1);
+        p32 = (Button) findViewById(R.id.pole_3_2);
+        p33 = (Button) findViewById(R.id.pole_3_3);
+        reset = (Button) findViewById(R.id.reset);
+        wynik = (TextView) findViewById(R.id.wynik);
     }
 
     public void przycisk(View view) {
-        TextView wynik = (TextView) findViewById(R.id.wynik);
         Button przycisk = (Button) view;
         przycisk.setText(znak);
         licznik ++;
         if(sprawdzWygrana()){
             wynik.setText("Wygrywa: " + znak + "!!!");
+            reset.setVisibility(View.VISIBLE);
+            odblokuj(false);
         }
         if(licznik==9){
             wynik.setText("Remis !!!");
+            reset.setVisibility(View.VISIBLE);
         }
         if(znak.equals("X")) znak="O";
         else znak="X";
         przycisk.setEnabled(false);
     }
 
+    public void odblokuj(Boolean odblokowany){
+        p11.setEnabled(odblokowany);   p12.setEnabled(odblokowany);   p13.setEnabled(odblokowany);
+        p21.setEnabled(odblokowany);   p22.setEnabled(odblokowany);   p23.setEnabled(odblokowany);
+        p31.setEnabled(odblokowany);   p32.setEnabled(odblokowany);   p33.setEnabled(odblokowany);
+    }
+
     public boolean sprawdzWygrana(){
         boolean wygrana = false;
-        Button p11 = (Button) findViewById(R.id.pole_1_1);
-        Button p12 = (Button) findViewById(R.id.pole_1_2);
-        Button p13 = (Button) findViewById(R.id.pole_1_3);
-
-        Button p21 = (Button) findViewById(R.id.pole_2_1);
-        Button p22 = (Button) findViewById(R.id.pole_2_2);
-        Button p23 = (Button) findViewById(R.id.pole_2_3);
-
-        Button p31 = (Button) findViewById(R.id.pole_3_1);
-        Button p32 = (Button) findViewById(R.id.pole_3_2);
-        Button p33 = (Button) findViewById(R.id.pole_3_3);
 
         String p11s = p11.getText().toString();
         String p12s = p12.getText().toString();
@@ -72,5 +93,15 @@ public class MainActivity extends AppCompatActivity {
         ) wygrana = true;
         return wygrana;
 
+    }
+
+    public void resetuj(View view) {
+        p11.setText(""); p12.setText(""); p13.setText("");
+        p21.setText(""); p22.setText(""); p23.setText("");
+        p31.setText(""); p32.setText(""); p33.setText("");
+        odblokuj(true);
+        licznik = 0;
+        reset.setVisibility(View.INVISIBLE);
+        wynik.setText("Tu pojawi się wynik");
     }
 }

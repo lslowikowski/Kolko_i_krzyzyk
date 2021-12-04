@@ -58,7 +58,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="5dp"
             android:backgroundTint="#AAAAAA"
-            android:onClick="przycisk"/>
+            android:onClick="przycisk" />
     </LinearLayout>
 
     <LinearLayout
@@ -92,4 +92,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tu pojawi się wynik" />
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zagraj jeszcze raz"
+        android:layout_gravity="center"
+        android:visibility ="invisible"
+        android:onClick="resetuj"/>
 </LinearLayout>
